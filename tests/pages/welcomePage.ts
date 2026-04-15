@@ -8,13 +8,13 @@ export class WelcomePage {
     readonly twitterNav: Locator;
     readonly youtubeNav: Locator;
     readonly learnAngularButton: Locator;
-    readonly CLIDocumentationButton: Locator;
-    readonly AngularBlogButton: Locator;
-    readonly AngularDevToolsButton: Locator;
+    readonly cliDocumentationButton: Locator;
+    readonly angularBlogButton: Locator;
+    readonly angularDevToolsButton: Locator;
     readonly newComponentButton: Locator;
     readonly angularMaterialButton: Locator;
     readonly addPWASupportButton: Locator;
-    readonly addDependency: Locator;
+    readonly addDependencyButton: Locator;
     readonly runAndWatchTestsButton: Locator;
     readonly buildForProductionButton: Locator;
     readonly terminalOutput: Locator;
@@ -27,13 +27,13 @@ export class WelcomePage {
         this.twitterNav = page.locator('.toolbar').getByRole('link', { name: 'Twitter' });
         this.youtubeNav = page.locator('.toolbar').getByRole('link', { name: 'YouTube' });
         this.learnAngularButton = page.getByRole('link', { name: 'Learn Angular' });
-        this.CLIDocumentationButton = page.getByRole('link', { name: 'CLI Documentation' });
-        this.AngularBlogButton = page.getByRole('link', { name: 'Angular Blog' });
-        this.AngularDevToolsButton = page.getByRole('link', { name: 'Angular DevTools' });
+        this.cliDocumentationButton = page.getByRole('link', { name: 'CLI Documentation' });
+        this.angularBlogButton = page.getByRole('link', { name: 'Angular Blog' });
+        this.angularDevToolsButton = page.getByRole('link', { name: 'Angular DevTools' });
         this.newComponentButton = page.getByRole('button', { name: 'New Component' });
         this.angularMaterialButton = page.getByRole('button', { name: 'Angular Material' });
         this.addPWASupportButton = page.getByRole('button', { name: 'Add PWA Support' });
-        this.addDependency = page.getByRole('button', { name: 'Add Dependency' });
+        this.addDependencyButton = page.getByRole('button', { name: 'Add Dependency' });
         this.runAndWatchTestsButton = page.getByRole('button', { name: 'Run and Watch Tests' });
         this.buildForProductionButton = page.getByRole('button', { name: 'Build for Production' });
         this.terminalOutput = page.locator('.terminal pre');
@@ -60,7 +60,7 @@ export class WelcomePage {
         await expect(this.page).toHaveURL('https://angular-qa-recruitment-app.netlify.app/form');
     }
 
-        async clickStepperNav() {
+    async clickStepperNav() {
         await this.stepperNav.click();
     }
 
@@ -68,16 +68,8 @@ export class WelcomePage {
         await expect(this.page).toHaveURL('https://angular-qa-recruitment-app.netlify.app/stepper');
     }
 
-        async clickTwitterNav() {
-        await this.twitterNav.click();
-    }
-
     async verifyTwitterRedirected(tab: Page) {
         await expect(tab).toHaveURL('https://x.com/angular');
-    }
-
-        async clickYoutubeNav() {
-        await this.youtubeNav.click();
     }
 
     async verifyYouTubeRedirected(tab: Page) {
@@ -90,10 +82,6 @@ export class WelcomePage {
         const newPage = await pagePromise;
         await newPage.waitForLoadState();
         return newPage;
-    }
-
-    async closeNewTab(tab: Page) {
-        await tab.close();
     }
 
     async verifyLearnAngularRedirected(tab: Page) {
@@ -137,7 +125,7 @@ export class WelcomePage {
     }
 
     async clickAddDependency() {
-        await this.addDependency.click();
+        await this.addDependencyButton.click();
     }
 
     async verifyAddDependencyTerminalCommand() {
@@ -160,10 +148,9 @@ export class WelcomePage {
         await expect(this.terminalOutput).toContainText('ng build');
     }
 
-        async verifyDefaultTerminalCommand() {
+    async verifyDefaultTerminalCommand() {
         await expect(this.terminalOutput).toContainText('ng generate component xyz');
     }
-
 }
 
 
