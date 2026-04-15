@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { WelcomePage } from './pages/welcomePage';
 
-    let welcomePage: WelcomePage;
+let welcomePage: WelcomePage;
 
 test.beforeEach(async ({ page }) => {
     welcomePage = new WelcomePage(page);
@@ -45,17 +45,17 @@ test.describe('Resources redirect tests', () => {
     });
 
     test('Clicking on CLI Documentation button redirects to the correct page', async () => {
-        const newTab = await welcomePage.clickAndGetNewTab(welcomePage.CLIDocumentationButton);
+        const newTab = await welcomePage.clickAndGetNewTab(welcomePage.cliDocumentationButton);
         await welcomePage.verifyCLIDocumentationRedirected(newTab);
     });
 
         test('Clicking on Angular Blog button redirects to the correct page', async () => {
-        const newTab = await welcomePage.clickAndGetNewTab(welcomePage.AngularBlogButton);
+        const newTab = await welcomePage.clickAndGetNewTab(welcomePage.angularBlogButton);
         await welcomePage.verifyAngularBlogRedirected(newTab);
     });
 
         test('Clicking on Angular DevTools button redirects to the correct page', async () => {
-        const newTab = await welcomePage.clickAndGetNewTab(welcomePage.AngularDevToolsButton);
+        const newTab = await welcomePage.clickAndGetNewTab(welcomePage.angularDevToolsButton);
         await welcomePage.verifyAngularDevToolsRedirected(newTab);
     });
 
